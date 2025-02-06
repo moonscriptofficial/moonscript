@@ -1,0 +1,20 @@
+name: Crystal CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Crystal
+        uses: crystal-lang/setup-crystal@v1
+
+      - name: Install dependencies
+        run: shards install
