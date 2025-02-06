@@ -18,22 +18,30 @@
 # -----------------------------------------------------------------------
 
 module MoonScript
-    class ArtifactCleaner
-        def self.clean(clean_packages: Bool = false)
-            artifcats = if clean_packages[MOONSCRIPT_PACKAGE_DIR]
-            else
-                %w[.ms dist]
-            end
-            
-            if artifacts.any?(&->Dir.exists?(String))
-                artifacts.each do |artifact|
-                    Dir.safe_delete artifcat do
-                      terminals.puts "Deleting: #{artifact}"
-                    end
-                end
-            else
-                terminals.puts "[LOG]: Nothing to delete here..."
-            end
+  class ArtifactCleaner
+    def self.clean(clean_packages : Bool = false)
+
+      artifacts =
+        if clean_packages
+          [MOONSCRIPT_PACKAGES_DIR]
+        else
+          %w[.ms dist]
         end
+
+      if artifacts.any?(&->Dir.exists?(String))
+        artifacts.each do |artifact|
+          Dir.safe_delete artifact do
+            terminal.puts "[LOG]: Deleting: #{artifact}... 😀"
+          end
+        end
+      else
+        terminal.puts "[LOG]: Nothing to delete... 😀"
+      end
     end
+
+    def self.terminal
+      Render::Terminal::STDOUT
+    end
+    
+  end
 end
