@@ -9,11 +9,11 @@
   <a href="https://www.npmjs.com/package/your-language">
     <img src="https://img.shields.io/npm/dm/your-language.svg" alt="NPM downloads"/>
   </a>
-  <a href="https://github.com/your-repository/issues">
-    <img src="https://img.shields.io/github/issues/your-repository" alt="Open Issues"/>
+  <a href="https://github.com/moonscriptofficial/moonscript/issues">
+    <img src="https://img.shields.io/github/issues/moonscript" alt="Open Issues"/>
   </a>
-  <a href="https://github.com/your-repository/pulls">
-    <img src="https://img.shields.io/github/prs/your-repository" alt="Pull Requests"/>
+  <a href="https://github.com/moonscriptofficial/moonscript/pulls">
+    <img src="https://img.shields.io/github/prs/moonscript" alt="Pull Requests"/>
   </a>
 </p>
 
