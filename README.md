@@ -6,16 +6,17 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/your-language">
-    <img src="https://img.shields.io/npm/dm/your-language.svg" alt="NPM downloads"/>
+  <a href="https://www.npmjs.com/package/moonscript">
+    <img src="https://img.shields.io/npm/dm/moonscript.svg" alt="NPM downloads"/>
   </a>
   <a href="https://github.com/moonscriptofficial/moonscript/issues">
-    <img src="https://img.shields.io/github/issues/moonscript" alt="Open Issues"/>
+    <img src="https://img.shields.io/github/issues/moonscriptofficial/moonscript" alt="Open Issues"/>
   </a>
   <a href="https://github.com/moonscriptofficial/moonscript/pulls">
-    <img src="https://img.shields.io/github/prs/moonscript" alt="Pull Requests"/>
+    <img src="https://img.shields.io/github/prs/moonscriptofficial/moonscript" alt="Pull Requests"/>
   </a>
 </p>
+
 
 
 ## Overview
