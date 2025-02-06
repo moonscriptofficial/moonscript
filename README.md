@@ -12,9 +12,6 @@
   <a href="https://github.com/moonscriptofficial/moonscript/issues">
     <img src="https://img.shields.io/github/issues/moonscriptofficial/moonscript" alt="Open Issues"/>
   </a>
-  <a href="https://github.com/moonscriptofficial/moonscript/pulls">
-    <img src="https://img.shields.io/github/prs/moonscriptofficial/moonscript" alt="Pull Requests"/>
-  </a>
 </p>
 
 
