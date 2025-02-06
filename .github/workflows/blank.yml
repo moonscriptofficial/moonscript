@@ -10,11 +10,20 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Crystal
-        uses: crystal-lang/setup-crystal@v1
+      - name: Install Crystal
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            crystal \
+            libssl-dev \
+            libreadline-dev \
+            libz-dev \
+            libyaml-dev \
+            libffi-dev
 
       - name: Install dependencies
         run: shards install
