@@ -46,13 +46,6 @@ component Main {
   }
 }
 ```
-
-### Explanation:
-- **Component Definition**: The `component TodoItem` block defines a reusable component that encapsulates all its properties, styling, and behavior.
-- **Properties**: Properties like `color`, `done`, and `label` are defined within the component and can be accessed throughout the component's lifecycle.
-- **Styling**: The `style` block defines how elements inside the component will look. It’s similar to CSS, but with more power and flexibility.
-- **Render Function**: The `fun render` function is where the UI elements are rendered using the component's properties and styling.
-
 ---
 
 ## Why Choose **MoonScript**?
