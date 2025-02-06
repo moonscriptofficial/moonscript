@@ -1,3 +1,4 @@
+# -----------------------------------------------------------------------
 # This file is part of MoonScript
 #
 # MoonSript is free software: you can redistribute it and/or modify
@@ -14,6 +15,7 @@
 # along with MoonSript.  If not, see <https://www.gnu.org/licenses/>.
 #
 # Copyright (C) 2025 Krisna Pranav, MoonScript Developers
+# -----------------------------------------------------------------------
 
 module MoonScript
   class CORS
