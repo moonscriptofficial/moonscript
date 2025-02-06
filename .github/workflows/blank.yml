@@ -12,8 +12,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Check out the repository
       - uses: actions/checkout@v4
 
+      # Install Crystal and dependencies
       - name: Install Crystal
         run: |
           sudo apt-get update
@@ -24,10 +26,12 @@ jobs:
             libz-dev \
             libyaml-dev \
             libffi-dev
-          
+
+      # Install shards (Crystal's dependency manager)
       - name: Install shards
         run: |
-          curl -sSL https://github.com/crystal-lang/shards/releases/download/0.10.1/shards-0.10.1-linux-x86_64.tar.gz | tar xz -C /usr/local/bin
+          sudo apt-get install -y shards
 
+      # Install dependencies using shards
       - name: Install dependencies
         run: shards install
