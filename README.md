@@ -40,27 +40,9 @@ With **MoonScript**, you can develop dynamic and scalable web applications with 
 Here's a simple component written in **MoonScript** that demonstrates how easy it is to define components, properties, and styles:
 
 ```ruby
-component HelloWorld {
-  property color = "#333"
-  property done = false
-  property label = ""
-
-  style label {
-    font-weight: bold;
-    color: #{color};
-    flex: 1;
-
-    if (done) {
-      text-decoration: line-through;
-    }
-  }
-
+component Main {
   fun render {
-    <div>
-      <span::label>
-        label
-      </span>
-    </div>
+    <div>"Hello World!"</div>
   }
 }
 ```
