@@ -16,12 +16,25 @@
 # Copyright (C) 2025 Krisna Pranav, MoonScript Developers
 
 module MoonScript
-    class CORS
-        include HTTP::Handler
+  class CORS
+    include HTTP::Handler
 
-        def call(context)
-            context.response.headers["Accept-Control-Max-Age"] = 1.day.total_seconds.to_i.to_s
-            context.response.headers["Acccess-Control-Allow-Method"] = "GET, POSt, PUT, PATCH"
-        end
+    def call(context)
+      ## Response headers which supports the web type.
+      context.response.headers["Access-Control-Max-Age"] = 1.day.total_seconds.to_i.to_s
+      context.response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, PATCH"
+      context.response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+      context.response.headers["Access-Control-Allow-Credentials"] = "true"
+      context.response.headers["Access-Control-Allow-Origin"] = "*"
+      
+      ## Case checking
+      if context.request.method.upcase == "OPTIONS"
+        context.response.content_type = "text/html; charset=utf-8"
+        context.response.status = :ok
+      else
+        call_next context
+      end
+
     end
+  end
 end
