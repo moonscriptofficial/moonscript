@@ -52,5 +52,61 @@ module MoonScript
         def ast: Ast | Error
             map_error(artifacts, &.ast)
         end
+
+        def nodes_at_path(path: String)
+            map_error(ast, &.nodes_at_path(path))
+        end
+
+        def formatter_config
+            MoonJson.parse?(@path, search: true).try(&.formatter) || Formatter::Config.new
+        end
+
+        def format(node: Ast::Node | Nil) : String | Nil
+            Formatter.new(formatter_config).format!(node)
+        end
+
+        def format(path: String) : String | Error | Nil
+            case item = ast(path)
+            in Ast
+                Formatter.new(formatter_config).format(item)
+            in Error, Nil
+                item
+            end
+        end
+
+        def reset
+            @cache.clear
+            @watcher.patterns = SourceFiles.everything(MoonJson.parse(@path, search: true), include_tests: @include_tests, dot_env: @dot_env)
+        rescue error: Error
+            set(error)
+        end
+
+        def check
+            Logger.log "Type checking" do
+                if error = @cache.values.select(Error).first?
+                    error
+                else
+                    TypeChecker.new(check_everything: @check.unreachable?, check_env: @check.environment, ast: unchecked_ast).tap(&check)
+                end
+            rescue error: Error
+                error
+            end
+        end
+
+        def update(files: Array(String), reason: Symbol)
+            actions = [] of Symbol
+
+            Logger.log "Parsing files" do
+                files.each do |file|
+                    if File.extname(file) == ".moon"
+                        if File.exists?(file)
+                            contents = File.read(file)
+                            update(contents, file)
+                            
+                            if @format
+                                case ast = ast(file)
+                                when Ast formatted = Formatter.new(formatter_config).format(ast) + "\n"
+                                
+        end
     end
 end
