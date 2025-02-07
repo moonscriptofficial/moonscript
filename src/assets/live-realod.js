@@ -23,4 +23,16 @@
             window.location.reload();
         }
     };
-})
+
+    ws.onclose = () => {
+        if (!closing) {
+            setTimeout(() => connect(true), 200);
+        }
+    };
+
+    ws.onmessage = msg => {
+        if (msg.data == "reload") {
+            window.location.reload();
+        }
+    };
+})();
