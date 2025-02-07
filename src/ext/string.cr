@@ -18,16 +18,60 @@
 # -----------------------------------------------------------------------
 
 class String
-    def uncolorize: String
-    end
+  def uncolorize : String
+    self
+      .gsub(/[ \t]+$/m, "")
+      .gsub(/\e\[(\d+;?)*m/, "")
+      .rstrip
+  end
 
-    def last? : Char?
-        self[-1]?
-    end
+  def last? : Char?
+    self[-1]?
+  end
 
-    def indent(spaces: Int32 = 2) : String
-        lines.join('\n') do |line|
-            line.empty? ? line : ("" * spaces) + line
-        end 
+  def indent(spaces : Int32 = 2) : String
+    lines.join('\n') do |line|
+      line.empty? ? line : (" " * spaces) + line
     end
+  end
+
+  def remove_trailing_whitespace : String
+    lines.join('\n', &.rstrip)
+  end
+
+  def shrink_to_minimum_leading_whitespace : String
+    indent_size =
+      Int32::MAX
+
+    lines =
+      self
+        .lines
+        .map do |line|
+          reader = Char::Reader.new(line)
+          size = 0
+
+          loop do
+            case reader.current_char
+            when '\t'
+              size += 2
+            when ' '
+              size += 1
+            else
+              break
+            end
+
+            reader.next_char
+          end
+
+          if size < indent_size && !line.blank?
+            indent_size = size
+          end
+
+          (" " * size) + line[reader.pos..]?.to_s
+        end
+
+    lines
+      .map(&.[indent_size..]?.to_s)
+      .join("\n")
+  end
 end
