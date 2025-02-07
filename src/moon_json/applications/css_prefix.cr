@@ -17,8 +17,8 @@
 # Copyright (C) 2025 Krisna Pranav, MoonScript Developers
 # -----------------------------------------------------------------------
 
-module Mint
-  class MintJson
+module MoonScript
+  class MoonJson
     class Parser
       def parse_application_css_prefix : String
         @parser.read_string
