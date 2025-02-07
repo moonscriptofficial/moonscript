@@ -108,5 +108,20 @@ module MoonScript
                                 when Ast formatted = Formatter.new(formatter_config).format(ast) + "\n"
                                 
         end
+
+        private def set(value: TypeChecker | Error) : Nil
+            @result = value
+            @listener.try(&.call(value))
+        end
+
+        private def map_error(item: T | Error, & : T -> R) : R | Error forall T, R 
+            case item
+            in Error
+                item
+            in T
+                yield item
+            end
+        end
+        
     end
 end
