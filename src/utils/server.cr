@@ -31,5 +31,19 @@ module MoonScript
                     end
                 end
             end
+        end
+
+        private def port_closed?(host, port)
+            client = Socket.tcp(Socket::Family::INET, true)
+            client.connect(host, port, 0.25)
+            client.close
+            true
+        rescue
+            false
+        end
+
+        private def terminal
+            Render::Terminal::STDOUT
+        end
     end
 end
