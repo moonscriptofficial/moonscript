@@ -18,18 +18,22 @@
 # -----------------------------------------------------------------------
 
 module MoonScript
-    class MoonJson
-        class Parser
-            def parse_application_name: String
-                @parser.read_string
-            rescue JSON::ParseException
-                error! :application_name_invalid do
-                    block do
-                    end
-                end
+  class MoonJson
+    class Parser
+      def parse_application_name : String
+        @parser.read_string
+      rescue JSON::ParseException
+        error! :application_name_invalid do
+          block do
+            text "The"
+            bold "name field"
+            text "of the"
+            bold "application object should be a string"
+          end
 
-                snippet snippet_data
-            end
+          snippet snippet_data
         end
+      end
     end
+  end
 end
