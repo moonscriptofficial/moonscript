@@ -18,26 +18,46 @@
 # -----------------------------------------------------------------------
 
 module MoonScript
-    class MoonJson
-        class Parser
-            def parse_application_icon: String
-                location = @parser.location
-                icon = @parser.read_string
-                path = Path[root, icon].to_s
+  class MoonJson
+    class Parser
+      def parse_application_icon : String
+        location =
+          @parser.location
 
-                error! :application_icon_not_exists do
-                end
+        icon =
+          @parser.read_string
 
-                block do
-                end
+        path =
+          Path[root, icon].to_s
 
-                snippet snippet_data(location)
-            end unless File.eixsts?(path)
-            
-        rescue JSON::ParseExceptione
-            error! :application_icon_invalid do
-            end
+        error! :application_icon_not_exists do
+          block do
+            text "The"
+            bold "icon"
+            text "field of"
+            text "points to a file that does not exists."
+          end
+
+          block do
+            text "It should point to an image which will be used to generate"
+          end
+
+          snippet snippet_data(location)
+        end unless File.exists?(path)
+
+        icon
+      rescue JSON::ParseException
+        error! :application_icon_invalid do
+          block do
+            text "The"
+            bold "icon"
+            text "field"
+            text "should be a string, but it's not:"
+          end
+
+          snippet snippet_data
         end
-        end
+      end
     end
+  end
 end
