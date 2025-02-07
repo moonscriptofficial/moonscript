@@ -36,5 +36,16 @@ module MoonScript
         cond = vlq > 0
       end
     end
+
+    private def self.base64_encode(int)
+      BASE64_DIGITS[int]? || raise ArgumentError.new "#{int} is not valid base64 digit"
+    end
+
+    private def self.to_vlq_signed(int)
+        if int < 0 
+            ((-int) << 1) + 1
+        else
+            int << 1
+    end
   end
 end
