@@ -40,5 +40,17 @@ module MoonScript
         def delete(path: String) : Nil
             @cache.delete(path)
         end
+
+        def artifacts : TypeChecker::Artifacts | Error
+            map_error(result, &.artifacts)
+        end
+
+        def ast(path: String) : Ast | Error | Nil
+            @cache[path]?
+        end
+
+        def ast: Ast | Error
+            map_error(artifacts, &.ast)
+        end
     end
 end
