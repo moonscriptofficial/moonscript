@@ -28,28 +28,76 @@ module MoonScript
             directories << parse_source_directory
           end
 
-          error! :source_directory_empty do
+          error! :source_directories_empty do
+            block do
+              text "The"
+              bold "source-directories"
+              text "field lists all directories reative to moon.json"
+              text "which contain the source files"
+            end
+
+            block do
+              text "The"
+              bold "source-directories"
+              text "array should not be empty: "
+            end
+
+            snippet snippet_data(location)
+          end if directories.empty?
+
+          directories
+        end
+      rescue JSON::ParseException
+        error! :source_directories_invalid do
+          block do
+            text "The"
+            bold "source-directories"
+            text "field lists all directories relative to moon.json"
+            text "which contain the source files"
           end
 
           block do
+            text "The"
+            bold "source-directories"
+            text "field should be an array: "
           end
 
-          snippet snippet_data(location)
+          snippet snippet_data
         end
       end
 
-      def parse_source_directory: String
-        location = @parser.location
-        directory = @parser.read_string
-        path = Path[root, directory]
+      def parse_source_directory : String
+        location =
+          @parser.location
+
+        directory =
+          @parser.read_string
+
+        path =
+          Path[root, directory]
 
         error! :source_directory_not_exists do
+          block do
+            text "The source directory"
+            bold directory
+            text "does not exists:"
+          end
+
+          snippet snippet_data(location)
+        end unless Dir.exists?(path)
+
+        directory
+      rescue JSON::ParseException
+        error! :source_directory_invalid do
+          block do
+            text "All entries in the"
+            bold "source-directories"
+            text "array should be string"
+          end
+
+          snippet snippet_data
         end
-
-        snippet snippet_data(location)
-      end unless Dir.exists?(path)
+      end
     end
-    directory
-
   end
 end
