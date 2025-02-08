@@ -29,9 +29,42 @@ module MoonScript
             indent_size = parse_formatter_indent_size
           else
             error! :formatter_invalid_key do
-              text "The"
+              block do
+                text "The"
+                bold "formatter"
+                text "object has an invalid key:"
+              end
+
+              snippet key
+              snippet "expected:", snippet_data
             end
           end
+        end
+
+        Formatter::Config.new(indent_size: indent_size)
+      rescue JSON::ParseException
+        error! :formatter_invalid do
+          block do
+            text "The"
+            bold "formatter"
+            text "field should be an object: "
+          end
+
+          snippet snippet_data
+        end
+      end
+
+      def parse_formatter_indent_size : Int32
+        @parser.read_int.clamp(0, 100).to_i
+      rescue JSON::ParseException
+        error! :formatter_indent_size_invalid do
+          block do
+            text "The"
+            bold "indent-size"
+            text "field of the formatter configuration must be a number: "
+          end
+
+          snippet snippet_data
         end
       end
     end
