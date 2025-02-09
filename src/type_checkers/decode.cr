@@ -29,7 +29,7 @@ module MoonScript
           snippet(
             "Only these types and records containing them cantext be " \
             "automatically decoded:",
-            <<-MINT
+            <<-MOON
             Map(String, a)
             Array(a)
             Maybe(a)
@@ -38,7 +38,7 @@ module MoonScript
             Object
             Time
             Bool
-            MINT
+            MOON
           )
   
           snippet "The decode:", node
