@@ -1,0 +1,28 @@
+type Maybe(value) {
+  Just(value)
+  Nothing
+}
+
+component Main {
+  fun render : Html {
+    <div as input>
+    </div>
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  createElement as C,
+  variant as A,
+  setRef as D,
+  useRef as B
+} from "./runtime.js";
+
+export const
+  E = A(1, `Maybe.Just`),
+  F = A(0, `Maybe.Nothing`),
+  G = () => {
+    const a = B(new F());
+    return C(`div`, {
+      ref: D(a, E, F)
+    })
+  };

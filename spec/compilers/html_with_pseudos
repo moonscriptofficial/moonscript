@@ -1,0 +1,73 @@
+component Main {
+  state hoverBackground : String = "yellow"
+  state background : String = "blue"
+
+  style test {
+    background: #{background};
+    color: red;
+
+    &:hover {
+      background: #{hoverBackground};
+      color: cyan;
+    }
+
+    &::first-line {
+      text-transform: uppercase;
+    }
+
+    div {
+      font-family: #{"Hello"};
+      color: blue;
+    }
+  }
+
+  fun render : Html {
+    <div::test>
+    </div>
+  }
+}
+--------------------------------------------------------------------------------
+---=== /__moonscript__/index.css ===---
+.Main_test {
+  background: var(--a-a);
+  color: red;
+}
+
+.Main_test:hover {
+  background: var(--b-a);
+  color: cyan;
+}
+
+.Main_test::first-line {
+  text-transform: uppercase;
+}
+
+.Main_test div {
+  font-family: var(--c-a);
+  color: blue;
+}
+
+---=== /__moonscript__/index.js ===---
+import {
+  createElement as B,
+  useSignal as A,
+  style as C
+} from "./runtime.js";
+
+export const D = () => {
+  const
+    a = A(`yellow`),
+    b = A(`blue`),
+    c = () => {
+      const _ = {
+        [`--a-a`]: b.value,
+        [`--b-a`]: a.value,
+        [`--c-a`]: `Hello`
+      };
+      return _
+    };
+  return B(`div`, {
+    className: `Main_test`,
+    style: C([c()])
+  })
+};

@@ -1,0 +1,90 @@
+component First {
+  property prop : String = ""
+
+  fun render : Html {
+    <div>
+      prop
+    </div>
+  }
+}
+
+component Content {
+  property fontSize : Number = 18
+
+  fun render : Html {
+    <div>
+      "#{fontSize}px"
+    </div>
+  }
+}
+
+async component Test {
+  property test : String = ""
+  property test2 : String = ""
+  property test3 : String = ""
+
+  fun render : Html {
+    <Content fontSize={16}/>
+  }
+}
+
+component Main {
+  fun render : Html {
+    <div>
+      <First prop="blah"/>
+      <Content/>
+      <Test/>
+    </div>
+  }
+}
+--------------------------------------------------------------------------------
+---=== /__moonscript__/index.js ===---
+import {
+  lazyComponent as C,
+  createElement as A,
+  lazy as B
+} from "./runtime.js";
+
+export const
+  D = ({
+    a = ``
+  }) => {
+    return A(`div`, {}, [a])
+  },
+  E = ({
+    b = 18
+  }) => {
+    return A(`div`, {}, [`${b}px`])
+  },
+  F = B(`./1.js`),
+  G = () => {
+    return A(`div`, {}, [
+      A(D, {
+        a: `blah`
+      }),
+      A(E, {}),
+      A(C, {
+        c: [],
+        key: `Test`,
+        p: {},
+        x: F
+      })
+    ])
+  };
+
+---=== /__moonscript__/1.js ===---
+import { createElement as B } from "./runtime.js";
+
+import { E as A } from "./index.js";
+
+export const C = ({
+  a = ``,
+  b = ``,
+  c = ``
+}) => {
+  return B(A, {
+    b: 16
+  })
+};
+
+export default C;

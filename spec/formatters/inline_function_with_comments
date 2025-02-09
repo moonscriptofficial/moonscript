@@ -1,0 +1,22 @@
+module A {
+  //
+  fun test : String {
+    let a = ():String{/*A*/"Hello"/*B*/}
+    a()
+  }
+}
+--------------------------------------------------------------------------------
+module A {
+  //
+  fun test : String {
+    let a =
+      () : String {
+        /* A */
+        "Hello"
+
+        /* B */
+      }
+
+    a()
+  }
+}

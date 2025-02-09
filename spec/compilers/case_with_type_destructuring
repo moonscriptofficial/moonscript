@@ -1,0 +1,58 @@
+type A(a) {
+  B(a)
+}
+
+type C(a) {
+  D(A(a))
+  X
+}
+
+component Main {
+  fun render : String {
+    case (C.D(A.B(""))) {
+      C.X => ""
+      C.D(a) =>
+        case (a) {
+          A.B(c) =>
+            c
+        }
+    }
+
+    ""
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  patternVariable as E,
+  newVariant as C,
+  pattern as D,
+  variant as A,
+  match as B
+} from "./runtime.js";
+
+export const
+  F = A(1, `C.D`),
+  G = A(0, `C.X`),
+  H = A(1, `A.B`),
+  I = () => {
+    B(C(F)(C(H)(``)), [
+      [
+        D(G, []),
+        () => {
+          return ``
+        }
+      ],
+      [
+        D(F, [E]),
+        (a) => {
+          return B(a, [[
+            D(H, [E]),
+            (b) => {
+              return b
+            }
+          ]])
+        }
+      ]
+    ]);
+    return ``
+  };

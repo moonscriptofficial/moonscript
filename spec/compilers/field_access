@@ -1,0 +1,47 @@
+type X {
+  name : String
+}
+
+module Array {
+  fun map (array : Array(a), method : Function(a, b)) : Array(b) {
+    ``
+  }
+}
+
+component Main {
+  fun render : String {
+    [
+      {
+        name: "Joe"
+      },
+      {
+        name: "Doe"
+      }
+    ]
+    |> Array.map(.name(X))
+
+    "asd"
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  access as B,
+  record as A
+} from "./runtime.js";
+
+export const
+  a = A(`X`),
+  b = (c, d) => {
+    return undefined
+  },
+  C = () => {
+    b([
+      a({
+        name: `Joe`
+      }),
+      a({
+        name: `Doe`
+      })
+    ], B(`name`));
+    return `asd`
+  };

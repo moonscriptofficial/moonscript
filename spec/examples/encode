@@ -1,0 +1,14 @@
+-----------------------------------------------------encode_expected_expression
+component Main {
+  fun render : Html {
+    encode
+------------------------------------------------------------encode_complex_type
+type Maybe {
+  Just(String)
+}
+
+component Main {
+  fun render : Html {
+    encode Maybe.Just("")
+  }
+}

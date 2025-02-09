@@ -1,0 +1,18 @@
+component Test {
+  /* Comment */propertyname:String=
+  "Hello this is a looong string that will only fit in the next line..."
+
+  fun render : Html {
+    <div/>
+  }
+}
+--------------------------------------------------------------------------------
+component Test {
+  /* Comment */
+  property name : String =
+    "Hello this is a looong string that will only fit in the next line..."
+
+  fun render : Html {
+    <div/>
+  }
+}

@@ -1,0 +1,77 @@
+component Main {
+  fun render : Html {
+    <<#MARKDOWN(highlight)
+    \#{name}
+    ```moonscript
+    `Something`
+    "\#{name}"
+    "First line" \
+    "Second line" \
+    "Third line"
+    ```
+    MARKDOWN
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  createElement as A,
+  fragment as B
+} from "./runtime.js";
+
+export const C = () => {
+  return A(B, {}, [
+    A('p', {}, [`#{name}`]),
+    A('pre', {}, [A('code', {
+      class: "language-moonscript"
+    }, [
+      A('span', {
+        class: "line"
+      }, [`\`Something\`
+`]),
+      A('span', {
+        class: "line"
+      }, [
+        ``,
+        A('span', {
+          class: "string"
+        }, [`"#{`]),
+        A('span', {
+          class: "variable"
+        }, [`name`]),
+        A('span', {
+          class: "string"
+        }, [`}"`]),
+        `
+`
+      ]),
+      A('span', {
+        class: "line"
+      }, [
+        ``,
+        A('span', {
+          class: "string"
+        }, [`"First line" \\`]),
+        `
+`
+      ]),
+      A('span', {
+        class: "line"
+      }, [
+        ``,
+        A('span', {
+          class: "string"
+        }, [`"Second line" \\`]),
+        `
+`
+      ]),
+      A('span', {
+        class: "line"
+      }, [
+        ``,
+        A('span', {
+          class: "string"
+        }, [`"Third line"`])
+      ])
+    ])])
+  ])
+};

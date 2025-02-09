@@ -1,0 +1,43 @@
+store Test {
+  state aaaaaaa : String = "a"
+  state bbbbbbb : String = "b"
+  state ccccccc : String = "c"
+  state ddddddd : String = "d"
+  state eeeeeee : String = "e"
+  state fffffff : String = "f"
+  state ggggggg : String = "g"
+}
+
+component A {
+  connectTest exposing{aaaaaaa,bbbbbbb,ccccccc,ddddddd,eeeeeee,fffffff,ggggggg}
+
+  fun render : Html {
+    <div/>
+  }
+}
+--------------------------------------------------------------------------------
+store Test {
+  state aaaaaaa : String = "a"
+  state bbbbbbb : String = "b"
+  state ccccccc : String = "c"
+  state ddddddd : String = "d"
+  state eeeeeee : String = "e"
+  state fffffff : String = "f"
+  state ggggggg : String = "g"
+}
+
+component A {
+  connect Test exposing {
+    aaaaaaa,
+    bbbbbbb,
+    ccccccc,
+    ddddddd,
+    eeeeeee,
+    fffffff,
+    ggggggg
+  }
+
+  fun render : Html {
+    <div/>
+  }
+}

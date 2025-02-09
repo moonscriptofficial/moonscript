@@ -1,0 +1,21 @@
+module Test {
+  fun test : String {
+    `
+          "Hello"
+  asd
+    asd
+      asd
+    `
+  }
+}
+--------------------------------------------------------------------------------
+module Test {
+  fun test : String {
+    `
+          "Hello"
+  asd
+    asd
+      asd
+    `
+  }
+}

@@ -1,0 +1,47 @@
+component Main {
+  style base(color : String) {
+    height: 20px;
+
+    if (color == "red") {
+      background: red;
+    } else if (color == "blue") {
+      background: blue;
+    }
+  }
+
+
+  fun render : Html {
+    <div>
+      <div::base("blue")/>
+    </div>
+  }
+}
+--------------------------------------------------------------------------------
+---=== /__moonscript__/index.css ===---
+.Main_base {
+  height: 20px;
+  background: var(--a-a);
+}
+
+---=== /__moonscript__/index.js ===---
+import {
+  createElement as B,
+  compare as A,
+  style as C
+} from "./runtime.js";
+
+export const D = () => {
+  const a = (b) => {
+    const _ = {};
+    (A(b, `red`) ? Object.assign(_, {
+      [`--a-a`]: `red`
+    }) : (A(b, `blue`) ? Object.assign(_, {
+      [`--a-a`]: `blue`
+    }) : null));
+    return _
+  };
+  return B(`div`, {}, [B(`div`, {
+    className: `Main_base`,
+    style: C([a(`blue`)])
+  })])
+};

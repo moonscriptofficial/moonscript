@@ -1,0 +1,28 @@
+component Test {
+  state name : String = "Joe"
+  state age : Number = 24
+
+  fun test : Promise(Void) {
+    next {name: "Hello this is some loooong string to break this next thing.",age:30}
+  }
+
+  fun render : Html {
+    <div/>
+  }
+}
+--------------------------------------------------------------------------------
+component Test {
+  state name : String = "Joe"
+  state age : Number = 24
+
+  fun test : Promise(Void) {
+    next {
+      name: "Hello this is some loooong string to break this next thing.",
+      age: 30
+    }
+  }
+
+  fun render : Html {
+    <div/>
+  }
+}

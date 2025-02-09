@@ -1,0 +1,16 @@
+component Main {
+  fun render : Html {
+    <div style="opacity:0;"/>
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  createElement as A,
+  style as B
+} from "./runtime.js";
+
+export const C = () => {
+  return A(`div`, {
+    style: B([`opacity:0;`])
+  })
+};

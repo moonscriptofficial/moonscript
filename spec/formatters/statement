@@ -1,0 +1,21 @@
+module A {
+  fun test : Bool {
+    letx="hello"lety=0letz=1
+    true
+  }
+}
+--------------------------------------------------------------------------------
+module A {
+  fun test : Bool {
+    let x =
+      "hello"
+
+    let y =
+      0
+
+    let z =
+      1
+
+    true
+  }
+}

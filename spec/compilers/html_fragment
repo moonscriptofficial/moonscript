@@ -1,0 +1,22 @@
+component Main {
+  fun render : Html {
+    <div>
+      <>
+        "A"
+        "B"
+      </>
+    </div>
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  createElement as A,
+  fragment as B
+} from "./runtime.js";
+
+export const C = () => {
+  return A(`div`, {}, [A(B, {}, [
+    `A`,
+    `B`
+  ])])
+};

@@ -1,0 +1,34 @@
+type X {
+  name : String,
+  age : Number
+}
+
+module A {
+  fun test : String {
+    let a = (name:String,age:Number):X{{name: name, age: age + 100000000000000}}
+
+    let result =
+      a("Joe", 25)
+
+    result.name
+  }
+}
+--------------------------------------------------------------------------------
+type X {
+  name : String,
+  age : Number
+}
+
+module A {
+  fun test : String {
+    let a =
+      (name : String, age : Number) : X {
+        { name: name, age: age + 100000000000000 }
+      }
+
+    let result =
+      a("Joe", 25)
+
+    result.name
+  }
+}

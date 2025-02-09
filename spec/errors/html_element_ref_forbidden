@@ -1,0 +1,22 @@
+component Main {
+  fun render : Html {
+    <div ref="Hello"/>
+  }
+}
+--------------------------------------------------------------------------------
+░ ERROR (HTML_ELEMENT_REF_FORBIDDEN) ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+The use of "ref" attribute is forbidden:
+
+   ┌ errors/html_element_ref_forbidden:3:10
+   ├───────────────────────────────────────
+  1│ component Main {
+  2│   fun render : Html {
+  3│     <div ref="Hello"/>
+   │          ⌃⌃⌃⌃⌃⌃⌃⌃⌃⌃⌃
+  4│   }
+  5│ }
+
+Please use the "as" keyword instead:
+
+  <div as myDiv></div>

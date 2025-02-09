@@ -1,0 +1,13 @@
+component Main {
+  fun render : String {
+    "a" == "b"
+    ""
+  }
+}
+--------------------------------------------------------------------------------
+import { compare as A } from "./runtime.js";
+
+export const B = () => {
+  A(`a`, `b`);
+  return ``
+};

@@ -1,0 +1,14 @@
+component Main {
+  const NAME = "ASD"
+
+  fun render : String {
+    NAME
+  }
+}
+--------------------------------------------------------------------------------
+import { useSignal as A } from "./runtime.js";
+
+export const B = () => {
+  const a = A(`ASD`);
+  return a.value
+};

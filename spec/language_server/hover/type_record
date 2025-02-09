@@ -1,0 +1,40 @@
+type Article {
+  id : Number,
+  description : String,
+  title : String
+}
+
+module Test {
+  fun test : Article {
+    {
+      id: 1,
+      description: "MoonScript Lang",
+      title: "MoonScript"
+    }
+  }
+}
+------------------------------------------------------------------file test.moonscript
+{
+  "id": 0,
+  "method": "textDocument/hover",
+  "params": {
+    "textDocument": {
+      "uri": "file://#{root_path}/test.moonscript"
+    },
+    "position": {
+      "line": 7,
+      "character": 16
+    }
+  }
+}
+-------------------------------------------------------------------------request
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "contents": [
+      "```\ntype Article {\n  id : Number,\n  description : String,\n  title : String\n}\n```"
+    ]
+  },
+  "id": 0
+}
+------------------------------------------------------------------------response

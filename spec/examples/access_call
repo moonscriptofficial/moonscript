@@ -1,0 +1,63 @@
+type Maybe(value) {
+  Just(value)
+  Nothing
+}
+
+component Test {
+  fun something (string : String) : String {
+    string
+  }
+
+  fun render : Html {
+    <div/>
+  }
+}
+
+component Main {
+  fun handleClick : String {
+    case (test) {
+      Just(component) => component.something("asd")
+      Nothing => "asd"
+    }
+  }
+
+  fun render : Html {
+    <div onClick={handleClick}>
+      <Test as test/>
+    </div>
+  }
+}
+--------------------------------------------------------------------------------
+type Maybe(value) {
+  Just(value)
+  Nothing
+}
+
+component Test {
+  fun something (string : String) : String {
+    string
+  }
+
+  fun render : Html {
+    <div/>
+  }
+}
+
+component Main {
+  fun handleClick : String {
+    case (test) {
+      Just(component) => handleComponent(component)
+      Nothing => "asd"
+    }
+  }
+
+  fun handleComponent (component : Test) : String {
+    component.something("asd")
+  }
+
+  fun render : Html {
+    <div onClick={handleClick}>
+      <Test as test/>
+    </div>
+  }
+}

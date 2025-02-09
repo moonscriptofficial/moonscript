@@ -1,0 +1,49 @@
+type Result(error, value) {
+  Err(error)
+  Ok(value)
+}
+
+type Test {
+  string : String,
+  number : Number,
+}
+
+component Main {
+  fun render : String {
+    decode `` as Object as Test
+    encode { string: "String", number: 10 }
+
+    ""
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  decodeNumber as D,
+  decodeString as C,
+  identity as F,
+  encoder as E,
+  decoder as B,
+  variant as A,
+  record as G
+} from "./runtime.js";
+
+export const
+  H = A(1, `Result.Err`),
+  I = A(1, `Result.Ok`),
+  a = B(`Test`, {
+    string: C(I, H),
+    number: D(I, H)
+  }, I, H),
+  b = E({
+    string: F,
+    number: F
+  }),
+  c = G(`Test`),
+  J = () => {
+    a(undefined);
+    b(c({
+      string: `String`,
+      number: 10
+    }));
+    return ``
+  };

@@ -1,0 +1,37 @@
+component Main {
+  state name : String = "Joe"
+  state age : Number = 24
+
+  fun test : Promise(Void) {
+    next
+      {
+        name: "Hello",
+        age: 30
+      }
+  }
+
+  fun render : String {
+    test()
+
+    ""
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  useSignal as A,
+  batch as B
+} from "./runtime.js";
+
+export const C = () => {
+  const
+    a = A(`Joe`),
+    b = A(24),
+    c = () => {
+      return B(() => {
+        a.value = `Hello`;
+        b.value = 30
+      })
+    };
+  c();
+  return ``
+};

@@ -1,0 +1,35 @@
+component Ui.Dropdown {
+  style base {
+    background: red;
+  }
+
+  fun render : Html {
+    <div::base>
+      "test"
+    </div>
+  }
+}
+
+component Main {
+  fun render : Html {
+    <Ui.Dropdown/>
+  }
+}
+--------------------------------------------------------------------------------
+---=== /__moonscript__/index.css ===---
+.Ui·Dropdown_base {
+  background: red;
+}
+
+---=== /__moonscript__/index.js ===---
+import { createElement as A } from "./runtime.js";
+
+export const
+  B = () => {
+    return A(`div`, {
+      className: `Ui·Dropdown_base`
+    }, [`test`])
+  },
+  C = () => {
+    return A(B, {})
+  };

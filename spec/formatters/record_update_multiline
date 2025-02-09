@@ -1,0 +1,30 @@
+type A {
+  a : String,
+  b : Bool
+}
+
+module Test {
+  fun test : A {
+    let x =
+      { a : "Blah", b : false }
+
+    {x|a:"Hello this is a looong string that will only fit in the next line.",b:true}
+  }
+}
+--------------------------------------------------------------------------------
+type A {
+  a : String,
+  b : Bool
+}
+
+module Test {
+  fun test : A {
+    let x =
+      { a: "Blah", b: false }
+
+    { x |
+      a: "Hello this is a looong string that will only fit in the next line.",
+      b: true
+    }
+  }
+}

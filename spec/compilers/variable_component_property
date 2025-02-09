@@ -1,0 +1,25 @@
+component Test {
+  property test : String = "Hello"
+
+  fun render : String {
+    test
+  }
+}
+
+component Main {
+  fun render : Html {
+    <Test/>
+  }
+}
+--------------------------------------------------------------------------------
+import { createElement as A } from "./runtime.js";
+
+export const
+  B = ({
+    a = `Hello`
+  }) => {
+    return a
+  },
+  C = () => {
+    return A(B, {})
+  };

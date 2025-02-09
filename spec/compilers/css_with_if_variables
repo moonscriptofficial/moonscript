@@ -1,0 +1,52 @@
+store Application {
+  state isDarkMode : Bool = false
+}
+
+component Main {
+  connect Application exposing { isDarkMode }
+
+  style test {
+    if isDarkMode {
+      --color: red;
+    } else {
+      --color: blue;
+    }
+
+    font-size: 18px;
+  }
+
+  fun render : Html {
+    <div::test/>
+  }
+}
+--------------------------------------------------------------------------------
+---=== /__moonscript__/index.css ===---
+.Main_test {
+  font-size: 18px;
+  --color: var(--a-a);
+}
+
+---=== /__moonscript__/index.js ===---
+import {
+  createElement as B,
+  signal as A,
+  style as C
+} from "./runtime.js";
+
+export const
+  a = A(false),
+  D = () => {
+    const b = () => {
+      const _ = {};
+      (a.value ? Object.assign(_, {
+        [`--a-a`]: `red`
+      }) : Object.assign(_, {
+        [`--a-a`]: `blue`
+      }));
+      return _
+    };
+    return B(`div`, {
+      className: `Main_test`,
+      style: C([b()])
+    })
+  };

@@ -1,0 +1,45 @@
+global component Notifications {
+  state test : String = ""
+
+  get value : String {
+    test
+  }
+
+  fun notify (value : String) : String {
+    value
+  }
+
+  fun render : Html {
+    <div>
+      value
+    </div>
+  }
+}
+
+component Main {
+  fun render : Html {
+    <div>
+      Notifications.notify("Hello")
+    </div>
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  createElement as A,
+  signal as B
+} from "./runtime.js";
+
+export const
+  C = () => {
+    return A(`div`, {}, [a()])
+  },
+  b = (c) => {
+    return c
+  },
+  D = () => {
+    return A(`div`, {}, [b(`Hello`)])
+  },
+  d = B(``),
+  a = () => {
+    return d.value
+  };

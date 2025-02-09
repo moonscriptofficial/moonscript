@@ -1,0 +1,16 @@
+component Test {
+  statea:Number=0
+  stateb:String="hello"
+  fun render : Html {
+    <div/>
+  }
+}
+--------------------------------------------------------------------------------
+component Test {
+  state a : Number = 0
+  state b : String = "hello"
+
+  fun render : Html {
+    <div/>
+  }
+}

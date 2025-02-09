@@ -1,0 +1,58 @@
+component Main {
+  fun render : String {
+    case ({"A", 0, true}) {
+      {"A", 0, false} =>
+        "B"
+
+      {"A", 0, true} =>
+        "A"
+
+      {a, b, c} =>
+        a
+    }
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  patternVariable as B,
+  match as A
+} from "./runtime.js";
+
+export const C = () => {
+  return A([
+    `A`,
+    0,
+    true
+  ], [
+    [
+      [
+        `A`,
+        0,
+        false
+      ],
+      () => {
+        return `B`
+      }
+    ],
+    [
+      [
+        `A`,
+        0,
+        true
+      ],
+      () => {
+        return `A`
+      }
+    ],
+    [
+      [
+        B,
+        B,
+        B
+      ],
+      (a, b, c) => {
+        return a
+      }
+    ]
+  ])
+};

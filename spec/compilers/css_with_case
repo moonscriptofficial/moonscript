@@ -1,0 +1,58 @@
+component Main {
+  style test {
+    color: yellow;
+
+    case ("a") {
+      "a" =>
+        color: red;
+
+      =>
+        color: blue;
+    }
+  }
+
+  fun render : Html {
+    <div::test/>
+  }
+}
+--------------------------------------------------------------------------------
+---=== /__moonscript__/index.css ===---
+.Main_test {
+  color: var(--a-a, yellow);
+}
+
+---=== /__moonscript__/index.js ===---
+import {
+  createElement as B,
+  style as C,
+  match as A
+} from "./runtime.js";
+
+export const D = () => {
+  const a = () => {
+    const _ = {};
+    A(`a`, [
+      [
+        `a`,
+        () => {
+          return Object.assign(_, {
+            [`--a-a`]: `red`
+          })
+        }
+      ],
+      [
+        null,
+        () => {
+          return Object.assign(_, {
+            [`--a-a`]: `blue`
+          })
+        }
+      ]
+    ]);
+    return _
+  };
+  return B(`div`, {
+    className: `Main_test`,
+    style: C([a()])
+  })
+};

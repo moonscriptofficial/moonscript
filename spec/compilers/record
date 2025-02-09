@@ -1,0 +1,30 @@
+type Test {
+  a : String,
+  b : Number
+}
+
+component Main {
+  fun render : Html {
+    {
+      a: "Hello",
+      b: 0
+    }
+
+    <div/>
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  createElement as B,
+  record as A
+} from "./runtime.js";
+
+export const
+  a = A(`Test`),
+  C = () => {
+    a({
+      a: `Hello`,
+      b: 0
+    });
+    return B(`div`, {})
+  };

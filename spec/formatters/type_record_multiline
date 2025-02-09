@@ -1,0 +1,32 @@
+type A {
+  B(name : String, color : String)
+  C
+}
+
+component Main {
+  const X =
+    A.B(
+      color: "This is a looong string that will break it into a new line.",
+      name: "Joe",
+    )
+
+  fun render : String {
+    ""
+  }
+}
+--------------------------------------------------------------------------------
+type A {
+  B(name : String, color : String)
+  C
+}
+
+component Main {
+  const X =
+    A.B(
+      color: "This is a looong string that will break it into a new line.",
+      name: "Joe")
+
+  fun render : String {
+    ""
+  }
+}

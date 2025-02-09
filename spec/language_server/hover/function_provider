@@ -1,0 +1,36 @@
+type Test.Subscription {
+  test : Test
+}
+
+provider Test : Test.Subscription {
+  /* Comment for the function test. */
+  fun test : String {
+    "Test"
+  }
+}
+------------------------------------------------------------------file test.moonscript
+{
+  "id": 0,
+  "method": "textDocument/hover",
+  "params": {
+    "textDocument": {
+      "uri": "file://#{root_path}/test.moonscript"
+    },
+    "position": {
+      "line": 6,
+      "character": 4
+    }
+  }
+}
+-------------------------------------------------------------------------request
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "contents": [
+      "**Test.test: String**\n",
+      "Comment for the function test."
+    ]
+  },
+  "id": 0
+}
+------------------------------------------------------------------------response

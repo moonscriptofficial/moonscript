@@ -1,0 +1,24 @@
+{
+  "moonscript-version": "0.0.0 <= v < 0.0.1"
+}
+--------------------------------------------------------------------------------
+░ ERROR (MOON_VERSION_MISMATCH) ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+The moonscript-version field does not match this version of MoonScript.
+
+I was looking for
+
+  0.0.0 <= v < 0.0.1
+
+but found instead:
+
+  99.99.99
+
+It is here:
+
+   ┌ spec/fixtures/moonscript.json:2:19
+   ├───────────────────────────────────────
+  1│ {
+  2│   "moonscript-version": "0.0.0 <= v < 0.0.1"
+   │                   ⌃
+  3│ }

@@ -1,0 +1,17 @@
+type A(a, b, c) {
+  B
+  C
+}
+--------------------------------------------------------------------------------
+░ ERROR (TYPE_DEFINITION_UNUSED_PARAMETER) ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+Type parameters must be used by at least one option. This parameter was not used
+by any of the options:
+
+   ┌ errors/type_definition_unused_parameter:1:8
+   ├────────────────────────────────────────────
+  1│ type A(a, b, c) {
+   │        ⌃
+  2│   B
+  3│   C
+  4│ }

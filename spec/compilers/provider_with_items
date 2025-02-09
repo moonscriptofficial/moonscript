@@ -1,0 +1,66 @@
+type Subscription {
+  a : Bool,
+  b : Bool
+}
+
+provider Provider : Subscription {
+  const NAME = "hello"
+
+  state a : String = ""
+
+  get b : String {
+    a
+  }
+
+  fun update : Promise(Void) {
+    await void
+  }
+
+  fun name : String {
+    NAME
+  }
+}
+
+component Main {
+  use Provider {
+    a: true,
+    b: false
+  }
+
+  fun render {
+    <div/>
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  createProvider as C,
+  createElement as E,
+  signal as B,
+  record as A,
+  useId as D
+} from "./runtime.js";
+
+export const
+  a = A(`Subscription`),
+  b = `hello`,
+  c = () => {
+    return b
+  },
+  d = B(``),
+  e = () => {
+    return d.value
+  },
+  f = new Map(),
+  F = C(f, async () => {
+    return await null
+  }),
+  G = () => {
+    const g = D();
+    F(g, () => {
+      return a({
+        a: true,
+        b: false
+      })
+    });
+    return E(`div`, {})
+  };

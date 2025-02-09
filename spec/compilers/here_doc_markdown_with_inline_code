@@ -1,0 +1,20 @@
+component Main {
+  fun render : Html {
+    <<#MARKDOWN
+    * When open pressing `Esc` closes it.
+    MARKDOWN
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  createElement as A,
+  fragment as B
+} from "./runtime.js";
+
+export const C = () => {
+  return A(B, {}, [A('ul', {}, [A('li', {}, [
+    `When open pressing `,
+    A('code', {}, [`Esc`]),
+    ` closes it.`
+  ])])])
+};

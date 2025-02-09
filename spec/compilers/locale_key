@@ -1,0 +1,27 @@
+locale en {
+  test: "Hello"
+}
+
+component Main {
+  fun render : String {
+    :test
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  translations as B,
+  translate as A,
+  locale as C
+} from "./runtime.js";
+
+export const D = () => {
+  return A(`test`)
+};
+
+B.value = {
+  en: {
+    'test': `Hello`
+  }
+};
+
+C.value = `en`;

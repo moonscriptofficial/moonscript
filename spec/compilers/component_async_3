@@ -1,0 +1,99 @@
+module Test {
+  fun blah {
+    halb()
+  }
+
+  fun halb() {
+    ""
+  }
+}
+
+async component First {
+  fun render : Html {
+    <div>
+      "First"
+      Test.blah()
+    </div>
+  }
+}
+
+async component Second {
+  fun render : Html {
+    <div>
+      "Second"
+      Test.blah()
+    </div>
+  }
+}
+
+component Main {
+  fun render : Html {
+    <div>
+      <First/>
+      <Second/>
+      Test.blah()
+    </div>
+  }
+}
+--------------------------------------------------------------------------------
+---=== /__moonscript__/index.js ===---
+import {
+  lazyComponent as C,
+  createElement as B,
+  lazy as A
+} from "./runtime.js";
+
+export const
+  a = () => {
+    return ``
+  },
+  b = () => {
+    return a()
+  },
+  D = A(`./1.js`),
+  E = A(`./2.js`),
+  F = () => {
+    return B(`div`, {}, [
+      B(C, {
+        c: [],
+        key: `First`,
+        p: {},
+        x: D
+      }),
+      B(C, {
+        c: [],
+        key: `Second`,
+        p: {},
+        x: E
+      }),
+      b()
+    ])
+  };
+
+---=== /__moonscript__/1.js ===---
+import { createElement as A } from "./runtime.js";
+
+import { b as a } from "./index.js";
+
+export const B = () => {
+  return A(`div`, {}, [
+    `First`,
+    a()
+  ])
+};
+
+export default B;
+
+---=== /__moonscript__/2.js ===---
+import { createElement as A } from "./runtime.js";
+
+import { b as a } from "./index.js";
+
+export const B = () => {
+  return A(`div`, {}, [
+    `Second`,
+    a()
+  ])
+};
+
+export default B;

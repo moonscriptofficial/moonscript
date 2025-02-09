@@ -1,0 +1,27 @@
+type Blah1 {
+  blah : Bool
+}
+
+type Blah {
+  blah : Blah1
+}
+
+module Test {
+  fun test : Bool {
+    { blah: { blah: true } }.blah.blah
+  }
+}
+--------------------------------------------------------------------------------
+type Blah1 {
+  blah : Bool
+}
+
+type Blah {
+  blah : Blah1
+}
+
+module Test {
+  fun test : Bool {
+    { blah: { blah: true } }.blah.blah
+  }
+}

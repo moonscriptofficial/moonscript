@@ -1,0 +1,14 @@
+{
+  "moonscript-version": 0
+}
+--------------------------------------------------------------------------------
+░ ERROR (MOON_VERSION_INVALID) ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+The moonscript-version field should be a string, but it's not:
+
+   ┌ spec/fixtures/moonscript.json:2:19
+   ├─────────────────────────────
+  1│ {
+  2│   "moonscript-version": 0
+   │                   ⌃
+  3│ }

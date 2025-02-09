@@ -1,0 +1,76 @@
+type MouseProvider.Data {
+  moves : Function(Position, Void),
+  ups : Function(Position, Void)
+}
+
+provider MouseProvider : MouseProvider.Data {
+  fun update : Void {
+    void
+  }
+}
+
+component Main {
+  use MouseProvider {
+    moves: (data : Position) : Void { void },
+    ups: (data : Position) : Void { void }
+  } when {
+    false
+  }
+
+  fun componentWillUnmount : Void {
+    void
+  }
+
+  fun componentDidUpdate : Void {
+    void
+  }
+
+  fun componentDidMount : Void {
+    void
+  }
+
+  fun render : Html {
+    <div/>
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  createProvider as B,
+  createElement as F,
+  useDidUpdate as E,
+  useEffect as D,
+  record as A,
+  useId as C
+} from "./runtime.js";
+
+export const
+  a = A(`MouseProvider.Data`),
+  b = new Map(),
+  G = B(b, () => {
+    return null
+  }),
+  H = () => {
+    const c = C();
+    D(() => {
+      (() => {
+        return null
+      })();
+      return () => {
+        return null
+      }
+    }, []);
+    E(() => {
+      return null
+    });
+    G(c, () => {
+      return (false ? a({
+        moves: (d) => {
+          return null
+        },
+        ups: (e) => {
+          return null
+        }
+      }) : null)
+    });
+    return F(`div`, {})
+  };

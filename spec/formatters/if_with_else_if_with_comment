@@ -1,0 +1,22 @@
+module Test {
+  fun test : Bool {
+    //a single inline comment
+    if(true){ true }else { /*COMMENT*/ if(false){false}else{true} }
+  }
+}
+--------------------------------------------------------------------------------
+module Test {
+  fun test : Bool {
+    // a single inline comment
+    if true {
+      true
+    } else {
+      /* COMMENT */
+      if false {
+        false
+      } else {
+        true
+      }
+    }
+  }
+}

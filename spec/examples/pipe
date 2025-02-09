@@ -1,0 +1,92 @@
+------------------------------------------------------------call_not_a_function
+component Main {
+  fun test (value : String) : String {
+    value
+  }
+
+  fun render : String {
+    "Hello"
+    |> "B"
+  }
+}
+----------------------------------------------------call_argument_size_mismatch
+component Main {
+  fun test : String {
+    "X"
+  }
+
+  fun render : String {
+    "Hello"
+    |> test
+  }
+}
+-------------------------------------------------------------------------------
+module Test {
+  fun pipe (value : String) : String {
+    value
+  }
+}
+
+component Main {
+  fun test (value : String) : String {
+    value
+  }
+
+  fun render : String {
+    "Hello"
+    |> test
+    |> Test.pipe()
+    |> Test.pipe
+    |> (value : String) : String { value }
+  }
+}
+
+-------------------------------------------------------------------------------
+component Main {
+  fun pipe (value : String) : Promise(String) {
+    await value
+  }
+
+  fun test {
+    let value =
+      "Hello"
+      |> await pipe
+      |> await pipe
+      |> await pipe
+      |> await pipe
+      |> await pipe
+
+    value == "asd"
+  }
+
+  fun render : String {
+    test()
+    ""
+  }
+}
+-------------------------------------------------------------------------------
+component Main {
+  fun test (value : String) {
+    value
+  }
+
+  fun render : Html {
+    "test" |> test
+
+    <div/>
+  }
+}
+-------------------------------------------------------------------------------
+component Main {
+  fun test (value : String) {
+    value
+  }
+
+  fun render : Html {
+    "test"
+    // Some comment
+    |> test
+
+    <div/>
+  }
+}

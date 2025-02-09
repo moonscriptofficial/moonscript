@@ -1,0 +1,51 @@
+async component X {
+  fun render : Html {
+    encode { name: "Hello" }
+    <></>
+  }
+}
+
+component Main {
+  fun render : Html {
+    <X/>
+  }
+}
+--------------------------------------------------------------------------------
+---=== /__moonscript__/index.js ===---
+import {
+  lazyComponent as C,
+  createElement as B,
+  lazy as A
+} from "./runtime.js";
+
+export const
+  D = A(`./1.js`),
+  E = () => {
+    return B(C, {
+      c: [],
+      key: `X`,
+      p: {},
+      x: D
+    })
+  };
+
+---=== /__moonscript__/1.js ===---
+import {
+  identity as B,
+  encoder as A,
+  record as C
+} from "./runtime.js";
+
+export const
+  a = A({
+    name: B
+  }),
+  b = C(`A`),
+  D = () => {
+    a(b({
+      name: `Hello`
+    }));
+    return null
+  };
+
+export default D;

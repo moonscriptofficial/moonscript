@@ -1,0 +1,41 @@
+component Main {
+  style test {
+    &:focus {
+      color: red;
+    }
+
+    &[someattribute] {
+      color: red;
+    }
+
+    &.someclass {
+      color: red;
+    }
+  }
+
+  fun render : Html {
+    <div::test/>
+  }
+}
+--------------------------------------------------------------------------------
+---=== /__moonscript__/index.css ===---
+.Main_test:focus {
+  color: red;
+}
+
+.Main_test[someattribute] {
+  color: red;
+}
+
+.Main_test.someclass {
+  color: red;
+}
+
+---=== /__moonscript__/index.js ===---
+import { createElement as A } from "./runtime.js";
+
+export const B = () => {
+  return A(`div`, {
+    className: `Main_test`
+  })
+};

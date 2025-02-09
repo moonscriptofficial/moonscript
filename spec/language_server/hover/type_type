@@ -1,0 +1,39 @@
+/* Comment for Status type. */
+type Status {
+  Error
+  Ok
+}
+
+module Test {
+  fun success : Status {
+    Status.Ok
+  }
+}
+------------------------------------------------------------------file test.moonscript
+{
+  "id": 0,
+  "method": "textDocument/hover",
+  "params": {
+    "textDocument": {
+      "uri": "file://#{root_path}/test.moonscript"
+    },
+    "position": {
+      "line": 7,
+      "character": 19
+    }
+  }
+}
+-------------------------------------------------------------------------request
+{
+  "jsonrpc": "2.0",
+  "result": {
+    "contents": [
+      "**Status**\n",
+      "Comment for Status type.\n",
+      "**Error**",
+      "**Ok**"
+    ]
+  },
+  "id": 0
+}
+------------------------------------------------------------------------response

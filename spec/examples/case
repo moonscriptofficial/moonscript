@@ -1,0 +1,151 @@
+--------------------------------------------------------case_expected_condition
+component Main {
+  fun render : String {
+    case
+----------------------------------------------case_expected_closing_parenthesis
+component Main {
+  fun render : String {
+    case ("a"
+--------------------------------------------------case_expected_opening_bracket
+component Main {
+  fun render : String {
+    case ("a")
+---------------------------------------------------------case_expected_branches
+component Main {
+  fun render : String {
+    case ("a") {
+--------------------------------------------------case_expected_closing_bracket
+component Main {
+  fun render : String {
+    case ("a") {
+      => "a"
+------------------------------------------------case_branch_expected_expression
+component Main {
+  fun render : String {
+    case ("a") {
+      =>
+--------------------------------------------------------case_branch_not_matches
+component Main {
+  fun render : String {
+    case ("x") {
+      "a" => "a"
+      "b" => true
+      => "c"
+    }
+  }
+}
+---------------------------------------------------------------case_unnecessary
+type A {
+  B
+  C
+}
+
+component Main {
+  fun render : String {
+    case (A.B) {
+      A.B => "a"
+      A.C => "c"
+      => "x"
+    }
+  }
+}
+------------------------------------------------------------case_not_exhaustive
+component Main {
+  fun render : String {
+    case ("a") {
+      "a" => "a"
+    }
+  }
+}
+------------------------------------------------------------case_not_exhaustive
+type A {
+  B
+  C
+  D
+}
+
+component Main {
+  fun render : String {
+    case (A.B) {
+      A.B => "a"
+      A.C => "c"
+    }
+  }
+}
+-------------------------------------------------------------------------------
+component Main {
+  fun render : String {
+    case ("x") {
+      "a" => "a"
+      "b" => "b"
+      => "c"
+    }
+  }
+}
+-------------------------------------------------------------------------------
+type Maybe(value) {
+  Just(value)
+  Nothing
+}
+
+component Main {
+  fun testCase : Maybe(Number) {
+    case (-1) {
+      -1 => Maybe.Nothing
+      => Maybe.Just(2)
+    }
+  }
+
+  fun render : String {
+    testCase()
+
+    ""
+  }
+}
+-------------------------------------------------------------------------------
+module Test {
+  const X = "X"
+}
+
+component Main {
+  fun render : String {
+    case ("x") {
+      Test.X => "x"
+      "a" => "a"
+      "b" => "b"
+      => "c"
+    }
+  }
+}
+-------------------------------------------------------------------------------
+type Edge {
+  Start
+  Middle
+  End
+}
+
+component Main {
+  style test (edge : Edge) {
+    case edge {
+      Start => {
+        color: red;
+      }
+
+      Middle => {
+        color: green;
+      }
+
+      End => {
+        color: brown;
+      }
+    }
+  }
+
+  fun render : Html {
+    <div>
+      <p::test(Edge.Start)>"Hello Wold!"</p>
+      <p::test(Edge.Middle)>"Hello Wold!"</p>
+      <p::test(Edge.End)>"Hello Wold!"</p>
+    </div>
+  }
+}

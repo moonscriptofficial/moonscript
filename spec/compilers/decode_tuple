@@ -1,0 +1,31 @@
+type Result(error, value) {
+  Err(error)
+  Ok(value)
+}
+
+component Main {
+  fun render : String {
+    decode (`[]`) as Tuple(String, Number, String)
+
+    ""
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  decodeNumber as D,
+  decodeString as C,
+  decodeTuple as B,
+  variant as A
+} from "./runtime.js";
+
+export const
+  E = A(1, `Result.Err`),
+  F = A(1, `Result.Ok`),
+  G = () => {
+    B([
+      C(F, E),
+      D(F, E),
+      C(F, E)
+    ], F, E)((([])));
+    return ``
+  };

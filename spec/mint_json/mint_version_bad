@@ -1,0 +1,18 @@
+{
+  "moonscript-version": ""
+}
+--------------------------------------------------------------------------------
+░ ERROR (MOON_VERSION_BAD) ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+The moonscript-version constraint should be in this format:
+
+  0.0.0 <= v < 1.0.0
+
+It is here:
+
+   ┌ spec/fixtures/moonscript.json:2:19
+   ├─────────────────────────────
+  1│ {
+  2│   "moonscript-version": ""
+   │                   ⌃
+  3│ }

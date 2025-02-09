@@ -1,0 +1,23 @@
+component Main {
+  fun regexp : Regexp {
+    /.*/gm
+  }
+
+  fun render : String {
+    regexp()
+
+    ""
+  }
+}
+--------------------------------------------------------------------------------
+component Main {
+  fun regexp : Regexp {
+    /.*/gm
+  }
+
+  fun render : String {
+    regexp()
+
+    ""
+  }
+}

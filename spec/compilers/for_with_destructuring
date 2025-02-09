@@ -1,0 +1,38 @@
+component Main {
+  fun render : Array(Html) {
+    for ({x,y} of [{0, 0}]) {
+      <div>
+        "#{x},#{y}"
+      </div>
+    }
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  patternVariable as B,
+  createElement as C,
+  destructure as A
+} from "./runtime.js";
+
+export const D = () => {
+  return (() => {
+    const _0 = [];
+    const _1 = [[
+      0,
+      0
+    ]];
+    let _i = -1;
+    for (let a of _1) {
+      _i++;
+      const [
+        b,
+        c
+      ] = A(a, [
+        B,
+        B
+      ]);
+      _0.push(C(`div`, {}, [`${b},${c}`]))
+    };
+    return _0
+  })()
+};

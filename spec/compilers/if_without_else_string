@@ -1,0 +1,13 @@
+component Main {
+  fun render : String {
+    if ("asd" == "asd2") {
+      "TRUE"
+    }
+  }
+}
+--------------------------------------------------------------------------------
+import { compare as A } from "./runtime.js";
+
+export const B = () => {
+  return (A(`asd`, `asd2`) ? `TRUE` : "")
+};

@@ -1,0 +1,79 @@
+type Maybe(value) {
+  Just(value)
+  Nothing
+}
+
+component Instance {
+  fun render : Html {
+    <div as base></div>
+  }
+}
+
+component Main {
+  fun handleClick {
+    case (instance) {
+      Maybe.Just(component) => component.base
+      Maybe.Nothing => Maybe.Nothing
+    }
+  }
+
+  fun render : Html {
+    <div onClick={handleClick}>
+      <Instance as instance/>
+    </div>
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  patternVariable as H,
+  createElement as D,
+  pattern as G,
+  useMemo as C,
+  variant as A,
+  setRef as E,
+  useRef as B,
+  match as F
+} from "./runtime.js";
+
+export const
+  I = A(1, `Maybe.Just`),
+  J = A(0, `Maybe.Nothing`),
+  K = ({
+    _
+  }) => {
+    const a = B(new J());
+    const b = C(() => {
+      return {
+        a
+      }
+    }, []);
+    (_ ? _(b) : null);
+    return D(`div`, {
+      ref: E(a, I, J)
+    })
+  },
+  L = () => {
+    const
+      c = B(new J()),
+      d = () => {
+        return F(c.current, [
+          [
+            G(I, [H]),
+            (e) => {
+              return e.a.current
+            }
+          ],
+          [
+            G(J, []),
+            () => {
+              return new J()
+            }
+          ]
+        ])
+      };
+    return D(`div`, {
+      "onClick": d
+    }, [D(K, {
+      _: E(c, I, J)
+    })])
+  };

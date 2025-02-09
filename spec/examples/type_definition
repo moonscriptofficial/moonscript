@@ -1,0 +1,39 @@
+--------------------------------------------------type_definition_expected_name
+type
+-------------------------------------------------------------------------------
+type A
+---------------------------------------type_definition_expected_closing_bracket
+type A {
+-----------------------------------type_definition_expected_closing_parenthesis
+type Maybe(a
+---------------------------------------type_definition_expected_closing_bracket
+type Maybe(a) {
+  Nothing
+-----------------------------------------------type_definition_unused_parameter
+type A(a, b, c) {
+  B
+  C
+}
+------------------------------------------type_definition_not_defined_parameter
+type A {
+  B(a)
+}
+------------------------------------------type_definition_not_defined_parameter
+type A {
+  B(Maybe(a))
+}
+-------------------------------------------------------------------------------
+type Result(error, value) {
+  Error(error)
+  Ok(value)
+}
+-------------------------------------------------------------------------------
+type Maybe(a) {
+  Nothing
+  Just(a)
+}
+-------------------------------------------------------------------------------
+type User {
+  name: String using "name",
+  id: String
+}

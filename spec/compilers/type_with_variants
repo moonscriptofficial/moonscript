@@ -1,0 +1,47 @@
+type A {
+  B(name : String, age : Number)
+  C
+}
+
+component Main {
+  fun render : String {
+    case (A.B(name: "Joe", age: 32)) {
+      A.B(name, age) => name
+      A.C => ""
+    }
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  patternVariable as E,
+  newVariant as C,
+  pattern as D,
+  variant as A,
+  match as B
+} from "./runtime.js";
+
+export const
+  F = A([
+    "name",
+    "age"
+  ], `A.B`),
+  G = A(0, `A.C`),
+  H = () => {
+    return B(C(F)(`Joe`, 32), [
+      [
+        D(F, [
+          E,
+          E
+        ]),
+        (a, b) => {
+          return a
+        }
+      ],
+      [
+        D(G, []),
+        () => {
+          return ``
+        }
+      ]
+    ])
+  };

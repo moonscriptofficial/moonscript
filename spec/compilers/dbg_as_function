@@ -1,0 +1,15 @@
+component Main {
+  fun render : String {
+    "Hello World!" |> dbg
+  }
+}
+--------------------------------------------------------------------------------
+import { inspect as A } from "./runtime.js";
+
+export const B = () => {
+  return (a) => {
+    console.log(`compilers/dbg_as_function:3:22`);
+    console.log(A(a));
+    return a
+  }(`Hello World!`)
+};

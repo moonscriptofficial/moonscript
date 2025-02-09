@@ -1,0 +1,41 @@
+type Locale {
+  level1: Level1
+}
+
+type Level1 {
+  level2: Level2
+}
+
+type Level2 {
+  name : String
+}
+
+store Settings {
+  state locale : Locale = { level1: { level2: { name: "Test" }} }
+}
+
+component Main {
+  fun render : String {
+    Settings.locale.level1.level2.name
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  signal as B,
+  record as A
+} from "./runtime.js";
+
+export const
+  a = A(`Level2`),
+  b = A(`Level1`),
+  c = A(`Locale`),
+  d = B(c({
+    level1: b({
+      level2: a({
+        name: `Test`
+      })
+    })
+  })),
+  C = () => {
+    return d.value.level1.level2.name
+  };

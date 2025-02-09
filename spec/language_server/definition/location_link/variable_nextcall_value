@@ -1,0 +1,80 @@
+store Test {
+  state text : String = ""
+
+  fun load (text : String) : Promise(Void) {
+    let newText =
+      "MoonScript"
+
+    next { text: newText }
+  }
+}
+------------------------------------------------------------------file test.moonscript
+{
+  "id": 0,
+  "method": "initialize",
+  "params": {
+    "capabilities": {
+      "textDocument": {
+        "definition": {
+          "linkSupport": true
+        }
+      }
+    }
+  }
+}
+-------------------------------------------------------------------------request
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "params": {
+    "textDocument": {
+      "uri": "file://#{root_path}/test.moonscript"
+    },
+    "position": {
+      "line": 7,
+      "character": 17
+    }
+  },
+  "method": "textDocument/definition"
+}
+-------------------------------------------------------------------------request
+{
+  "jsonrpc": "2.0",
+  "result": [
+    {
+      "originSelectionRange": {
+        "start": {
+          "line": 7,
+          "character": 17
+        },
+        "end": {
+          "line": 7,
+          "character": 24
+        }
+      },
+      "targetUri": "file://#{root_path}/test.moonscript",
+      "targetRange": {
+        "start": {
+          "line": 4,
+          "character": 4
+        },
+        "end": {
+          "line": 5,
+          "character": 12
+        }
+      },
+      "targetSelectionRange": {
+        "start": {
+          "line": 4,
+          "character": 8
+        },
+        "end": {
+          "line": 4,
+          "character": 15
+        }
+      }
+    }
+  ],
+  "id": 1
+}
+------------------------------------------------------------------------response

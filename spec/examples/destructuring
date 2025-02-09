@@ -1,0 +1,152 @@
+----------------------------------------------------destructuring_type_mismatch
+component Main {
+  fun render : String {
+    case "x" {
+      true => "a"
+      "b" => "b"
+      => "c"
+    }
+  }
+}
+-------------------------------------------------destructuring_multiple_spreads
+component Main {
+  fun render : String {
+    case [] {
+      [...a,...b] => "a"
+    }
+  }
+}
+----------------------------------------------------destructuring_type_mismatch
+component Main {
+  fun render : String {
+    case "" {
+      [...a,...b] => "a"
+    }
+  }
+}
+---------------------------------------------------destructuring_tuple_mismatch
+component Main {
+  fun render : String {
+    case {"a", "b"} {
+      {a, b, c} => "a"
+    }
+  }
+}
+----------------------------------------------------destructuring_type_mismatch
+component Main {
+  fun render : String {
+    case ("") {
+      {a, b} => "a"
+    }
+  }
+}
+----------------------------------------------------destructuring_type_mismatch
+component Main {
+  fun render : String {
+    case {"a", "b"} {
+      {"a", {"b"}} => "a"
+    }
+  }
+}
+----------------------------------------------------destructuring_type_mismatch
+component Main {
+  fun render : String {
+    case {"a", "b"} {
+      {{a}, b} => "a"
+    }
+  }
+}
+----------------------------------------------------destructuring_type_mismatch
+type T {
+  A(String)
+  B
+}
+
+component Main {
+  fun render : String {
+    if let T.A(a) = "" {
+      a
+    } else {
+      "b"
+    }
+  }
+}
+----------------------------------------------------destructuring_type_mismatch
+component Main {
+  fun render : String {
+    let {x, y, z} = "hello"
+    ""
+  }
+}
+---------------------------------------------------destructuring_tuple_mismatch
+component Main {
+  fun render : String {
+    let {x, y, z} = {"hello", "a"}
+    ""
+  }
+}
+-----------------------------------------------------destructuring_type_missing
+component Main {
+  fun render : String {
+    let Maybe.Just(a) = "" or return ""
+    ""
+  }
+}
+---------------------------------------------destructuring_type_variant_missing
+type Maybe {
+  Nothing
+}
+
+component Main {
+  fun render : String {
+    let Maybe.Just(a) = "" or return ""
+    ""
+  }
+}
+-------------------------------------------------------------------------------
+component Main {
+  fun render : String {
+    case "x" {
+      "a" => "a"
+      "b" => "b"
+      => "c"
+    }
+  }
+}
+-------------------------------------------------------------------------------
+type Maybe(a) {
+  Just(a)
+  Nothing
+}
+
+component Main {
+  fun render : String {
+    let Just(a) = Maybe.Just("Hello") or return ""
+    a
+  }
+}
+-------------------------------------------------------------------------------
+component Main {
+  fun render : String {
+    case [{"a", "b"}] {
+      [{_, _}, ..._] => "a"
+      [] => ""
+    }
+  }
+}
+-------------------------------------------------------------------------------
+type Result(error, value) {
+  Err(error)
+  Ok(value)
+}
+
+component Main {
+  fun render : String {
+    let object = `{}`
+
+    let Ok([first]) =
+      decode object as Array(Object) or return ""
+
+    ""
+  }
+}

@@ -1,0 +1,18 @@
+module Test {
+  fun test : Tuple(String, String, String) {
+    {
+      "Hello this is a long string which will make the tuple multiline...",
+      "Blah", "Joe"
+    }
+  }
+}
+--------------------------------------------------------------------------------
+module Test {
+  fun test : Tuple(String, String, String) {
+    {
+      "Hello this is a long string which will make the tuple multiline...",
+      "Blah",
+      "Joe"
+    }
+  }
+}

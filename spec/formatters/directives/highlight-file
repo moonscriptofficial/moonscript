@@ -1,0 +1,11 @@
+component Main {
+  fun render : Html {
+    @highlight-file(../../fixtures/Test.moonscript)
+  }
+}
+--------------------------------------------------------------------------------
+component Main {
+  fun render : Html {
+    @highlight-file(../../fixtures/Test.moonscript)
+  }
+}

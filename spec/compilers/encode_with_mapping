@@ -1,0 +1,35 @@
+type Test {
+  name : String using "test_name",
+  age : Number
+}
+
+component Main {
+  fun render : String {
+    encode { name: "Hello", age: 20 }
+
+    ""
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  identity as B,
+  encoder as A,
+  record as C
+} from "./runtime.js";
+
+export const
+  a = A({
+    name: [
+      B,
+      "test_name"
+    ],
+    age: B
+  }),
+  b = C(`Test`),
+  D = () => {
+    a(b({
+      name: `Hello`,
+      age: 20
+    }));
+    return ``
+  };

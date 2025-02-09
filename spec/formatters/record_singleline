@@ -1,0 +1,21 @@
+type A {
+  a : String
+}
+
+module Test {
+  fun test : A {
+    {
+a:"Hello"
+}
+  }
+}
+--------------------------------------------------------------------------------
+type A {
+  a : String
+}
+
+module Test {
+  fun test : A {
+    { a: "Hello" }
+  }
+}

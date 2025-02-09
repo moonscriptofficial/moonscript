@@ -1,0 +1,123 @@
+type User {
+  name : String
+}
+
+type Status {
+  Loading
+  Loaded
+}
+
+routes {
+  / {
+    let x = { name: "Blah" }
+    Status.Loading
+    Shared.greet(x.name)
+  }
+}
+
+module Shared {
+  // This is a deferred value which will be loaded
+  // in the `componentDidMount` function in the
+  // `Main` component.
+  const CONTENT =
+    defer "Hello, I was loaded later..."
+
+  fun greet (subject : String) : String {
+    "Hello #{subject}!"
+  }
+}
+
+// This is an async component which is loads when used.
+async component Greeter {
+  property subject : String
+
+  fun render : String {
+    { name: "Joe" }
+    Shared.greet(subject)
+  }
+}
+
+component Main {
+  state content : String = ""
+
+  fun componentDidMount {
+    let content =
+      await Shared.CONTENT
+
+    next { content: content }
+  }
+
+  fun render : Html {
+    <>
+      <Greeter subject="World"/>
+      Shared.greet("Me")
+    </>
+  }
+}
+--------------------------------------------------------------------------------
+---=== /__moonscript__/index.js ===---
+import {
+  lazyComponent as H,
+  createElement as F,
+  useEffect as D,
+  useSignal as C,
+  fragment as G,
+  variant as I,
+  record as A,
+  load as E,
+  lazy as B
+} from "./runtime.js";
+
+export const
+  a = A(`User`),
+  b = `./1.js`,
+  c = (d) => {
+    return `Hello ${d}!`
+  },
+  J = B(`./2.js`),
+  K = () => {
+    const e = C(``);
+    D(() => {
+      (async () => {
+        const f = await E(b);
+        return (() => {
+          e.value = f
+        })()
+      })()
+    }, []);
+    return F(G, {}, [
+      F(H, {
+        c: [],
+        key: `Greeter`,
+        p: {
+          a: `World`
+        },
+        x: J
+      }),
+      c(`Me`)
+    ])
+  },
+  L = I(0, `Status.Loading`),
+  M = I(0, `Status.Loaded`);
+
+---=== /__moonscript__/1.js ===---
+export const a = `Hello, I was loaded later...`;
+
+export default a;
+
+---=== /__moonscript__/2.js ===---
+import {
+  a as b,
+  c
+} from "./index.js";
+
+export const A = ({
+  a
+}) => {
+  b({
+    name: `Joe`
+  });
+  return c(a)
+};
+
+export default A;

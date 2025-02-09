@@ -1,0 +1,81 @@
+async component Test {
+  fun render : Html {
+    <div>
+      Greeter.greet("async")
+      Greeter.both()
+    </div>
+  }
+}
+
+module Greeter {
+  // Only used in Test so it should be compiled with it.
+  fun greet (name : String) {
+    "I'm #{name}!"
+  }
+
+  // Only used in Main so it should be compiled with it.
+  fun main {
+    "I'm in Main!"
+  }
+
+  // Only used in both so it should be compiled with Main.
+  fun both {
+    "I'm in both!"
+  }
+}
+
+component Main {
+  fun render : Html {
+    <div>
+      Greeter.main()
+      Greeter.both()
+      <Test/>
+    </div>
+  }
+}
+--------------------------------------------------------------------------------
+---=== /__moonscript__/index.js ===---
+import {
+  lazyComponent as C,
+  createElement as B,
+  lazy as A
+} from "./runtime.js";
+
+export const
+  a = () => {
+    return `I'm in Main!`
+  },
+  b = () => {
+    return `I'm in both!`
+  },
+  D = A(`./1.js`),
+  E = () => {
+    return B(`div`, {}, [
+      a(),
+      b(),
+      B(C, {
+        c: [],
+        key: `Test`,
+        p: {},
+        x: D
+      })
+    ])
+  };
+
+---=== /__moonscript__/1.js ===---
+import { createElement as A } from "./runtime.js";
+
+import { b as a } from "./index.js";
+
+export const
+  b = (c) => {
+    return `I'm ${c}!`
+  },
+  B = () => {
+    return A(`div`, {}, [
+      b(`async`),
+      a()
+    ])
+  };
+
+export default B;

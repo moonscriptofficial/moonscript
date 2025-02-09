@@ -1,0 +1,36 @@
+type Maybe(value) {
+  Just(value)
+  Nothing
+}
+
+component Instance {
+  fun render : Html {
+    <div></div>
+  }
+}
+
+global component Global {
+  fun render : Html {
+    <Instance as instance/>
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  createElement as B,
+  createRef as C,
+  variant as A,
+  setRef as D
+} from "./runtime.js";
+
+export const
+  E = A(1, `Maybe.Just`),
+  F = A(0, `Maybe.Nothing`),
+  G = () => {
+    return B(`div`, {})
+  },
+  a = C(new F()),
+  H = () => {
+    return B(G, {
+      _: D(a, E, F)
+    })
+  };

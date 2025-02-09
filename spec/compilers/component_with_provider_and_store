@@ -1,0 +1,66 @@
+type MouseProvider.Data {
+  moves : Function(Position, Void),
+  ups : Function(Position, Void)
+}
+
+provider MouseProvider : MouseProvider.Data {
+  fun update : Void {
+    void
+  }
+}
+
+store Blah {
+  state test : String = ""
+
+  fun x : String {
+    "hello"
+  }
+}
+
+component Main {
+  use MouseProvider {
+    moves: (data : Position) : Void { void },
+    ups: (data : Position) : Void { void }
+  } when {
+    false
+  }
+
+  connect Blah exposing { test, x }
+
+  fun render : Html {
+    <div/>
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  createProvider as C,
+  createElement as E,
+  signal as B,
+  record as A,
+  useId as D
+} from "./runtime.js";
+
+export const
+  a = A(`MouseProvider.Data`),
+  b = () => {
+    return `hello`
+  },
+  c = B(``),
+  d = new Map(),
+  F = C(d, () => {
+    return null
+  }),
+  G = () => {
+    const e = D();
+    F(e, () => {
+      return (false ? a({
+        moves: (f) => {
+          return null
+        },
+        ups: (g) => {
+          return null
+        }
+      }) : null)
+    });
+    return E(`div`, {})
+  };

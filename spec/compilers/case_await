@@ -1,0 +1,41 @@
+component Main {
+  fun render : String {
+    {
+      case await "Hello" {
+        "test" => true
+        "Hello" => false
+        => false
+      }
+    }
+
+    ""
+  }
+}
+--------------------------------------------------------------------------------
+import { match as A } from "./runtime.js";
+
+export const B = () => {
+  (async () => {
+    return A(await `Hello`, [
+      [
+        `test`,
+        () => {
+          return true
+        }
+      ],
+      [
+        `Hello`,
+        () => {
+          return false
+        }
+      ],
+      [
+        null,
+        () => {
+          return false
+        }
+      ]
+    ])
+  })();
+  return ``
+};

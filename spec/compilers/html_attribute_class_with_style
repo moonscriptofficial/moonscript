@@ -1,0 +1,24 @@
+component Main {
+  style base {
+    width: 100%;
+  }
+
+  fun render : Html {
+    <div::base class="something">
+    </div>
+  }
+}
+--------------------------------------------------------------------------------
+---=== /__moonscript__/index.css ===---
+.Main_base {
+  width: 100%;
+}
+
+---=== /__moonscript__/index.js ===---
+import { createElement as A } from "./runtime.js";
+
+export const B = () => {
+  return A(`div`, {
+    className: `something` + ` Main_base`
+  })
+};

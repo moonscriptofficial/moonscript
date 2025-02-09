@@ -1,0 +1,25 @@
+type A {
+  a : String
+}
+
+module Test {
+  fun test : A {
+    let x =
+      { a : "Blah" }
+
+    {x|a:"Hello"}
+  }
+}
+--------------------------------------------------------------------------------
+type A {
+  a : String
+}
+
+module Test {
+  fun test : A {
+    let x =
+      { a: "Blah" }
+
+    { x | a: "Hello" }
+  }
+}

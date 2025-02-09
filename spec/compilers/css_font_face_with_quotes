@@ -1,0 +1,33 @@
+component Main {
+  style test {
+    @font-face {
+      src: url(sansation_light.woff);
+      font-family: myFirstFont;
+    }
+
+    font-family: "myFirstFont";
+  }
+
+  fun render : Html {
+    <div::test/>
+  }
+}
+--------------------------------------------------------------------------------
+---=== /__moonscript__/index.css ===---
+.Main_test {
+  font-family: "myFirstFont";
+}
+
+@font-face {
+  src: url(sansation_light.woff);
+  font-family: myFirstFont;
+}
+
+---=== /__moonscript__/index.js ===---
+import { createElement as A } from "./runtime.js";
+
+export const B = () => {
+  return A(`div`, {
+    className: `Main_test`
+  })
+};

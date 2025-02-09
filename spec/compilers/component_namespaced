@@ -1,0 +1,21 @@
+component Ui.Dropdown {
+  fun render : String {
+    "test"
+  }
+}
+
+component Main {
+  fun render : Html {
+    <Ui.Dropdown/>
+  }
+}
+--------------------------------------------------------------------------------
+import { createElement as A } from "./runtime.js";
+
+export const
+  B = () => {
+    return `test`
+  },
+  C = () => {
+    return A(B, {})
+  };

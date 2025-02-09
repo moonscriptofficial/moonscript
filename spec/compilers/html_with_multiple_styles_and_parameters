@@ -1,0 +1,42 @@
+component Main {
+  style one {
+    color: red;
+  }
+
+  style two(color : String) {
+    color: #{color};
+  }
+
+  fun render : Html {
+    <div::one::two("blue")>
+    </div>
+  }
+}
+--------------------------------------------------------------------------------
+---=== /__moonscript__/index.css ===---
+.Main_one {
+  color: red;
+}
+
+.Main_two {
+  color: var(--a-a);
+}
+
+---=== /__moonscript__/index.js ===---
+import {
+  createElement as A,
+  style as B
+} from "./runtime.js";
+
+export const C = () => {
+  const a = (b) => {
+    const _ = {
+      [`--a-a`]: b
+    };
+    return _
+  };
+  return A(`div`, {
+    className: `Main_one Main_two`,
+    style: B([a(`blue`)])
+  })
+};

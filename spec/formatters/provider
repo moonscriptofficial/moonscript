@@ -1,0 +1,19 @@
+type Subscription {
+  a : Bool
+}
+
+providerProvider:Subscription {
+  fun test : Void {
+    void
+  }
+}
+--------------------------------------------------------------------------------
+type Subscription {
+  a : Bool
+}
+
+provider Provider : Subscription {
+  fun test : Void {
+    void
+  }
+}

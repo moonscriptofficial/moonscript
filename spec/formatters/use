@@ -1,0 +1,37 @@
+type Provider.Subscription {
+  a : String,
+  b : String
+}
+
+provider Provider : Provider.Subscription {
+  fun attach : Void {
+    void
+  }
+}
+
+component Test {
+  useProvider{a: "Hello",b: "Blah"}when{true}
+
+  fun render : Html {
+    <div/>
+  }
+}
+--------------------------------------------------------------------------------
+type Provider.Subscription {
+  a : String,
+  b : String
+}
+
+provider Provider : Provider.Subscription {
+  fun attach : Void {
+    void
+  }
+}
+
+component Test {
+  use Provider { a: "Hello", b: "Blah" } when { true }
+
+  fun render : Html {
+    <div/>
+  }
+}

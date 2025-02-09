@@ -1,0 +1,66 @@
+type Result(error, value) {
+  Err(error)
+  Ok(value)
+}
+
+type Maybe(a) {
+  Just(a)
+  Nothing
+}
+
+type Y  {
+  size : Number using "SIIIZEEE"
+}
+
+type X {
+  maybe : Maybe(String),
+  array : Array(String),
+  string : String,
+  number : Number,
+  bool : Bool,
+  time : Time,
+  y : Y
+}
+
+component Main {
+  fun render : String {
+    decode `` as Object as X
+    ""
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  decodeBoolean as G,
+  decodeString as E,
+  decodeNumber as C,
+  decodeArray as F,
+  decodeMaybe as D,
+  decodeTime as H,
+  decoder as B,
+  variant as A
+} from "./runtime.js";
+
+export const
+  I = A(1, `Maybe.Just`),
+  J = A(0, `Maybe.Nothing`),
+  K = A(1, `Result.Err`),
+  L = A(1, `Result.Ok`),
+  a = B(`Y`, {
+    size: [
+      C(L, K),
+      "SIIIZEEE"
+    ]
+  }, L, K),
+  b = B(`X`, {
+    maybe: D(E(L, K), L, K, I, J),
+    array: F(E(L, K), L, K),
+    string: E(L, K),
+    number: C(L, K),
+    bool: G(L, K),
+    time: H(L, K),
+    y: a
+  }, L, K),
+  M = () => {
+    b(undefined);
+    return ``
+  };

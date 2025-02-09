@@ -1,0 +1,33 @@
+type Test {
+  A(String)
+  B(String)
+}
+
+component Main {
+  fun render : String {
+    let Test.A(a) =
+      Test.A("Some string...") or return "RETURN"
+
+    a
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  patternVariable as E,
+  destructure as B,
+  newVariant as C,
+  pattern as D,
+  variant as A
+} from "./runtime.js";
+
+export const
+  F = A(1, `Test.A`),
+  G = A(1, `Test.B`),
+  H = () => {
+    const a = B(C(F)(`Some string...`), D(F, [E]));
+    if (a === false) {
+      return `RETURN`
+    };
+    const [b] = a;
+    return b
+  };

@@ -1,0 +1,60 @@
+module Test {
+  const TEST = defer { test() + B.c() }
+
+  fun test {
+    "Hello!"
+  }
+}
+
+module B {
+  fun c {
+    "Blah"
+  }
+}
+
+component Main {
+  fun componentDidMount : Promise(String) {
+    let a = await Test.TEST
+
+    a
+  }
+
+  fun render : Html {
+    <div>
+      B.c()
+    </div>
+  }
+}
+--------------------------------------------------------------------------------
+---=== /__moonscript__/index.js ===---
+import {
+  createElement as C,
+  useEffect as A,
+  load as B
+} from "./runtime.js";
+
+export const
+  a = () => {
+    return `Blah`
+  },
+  b = `./1.js`,
+  D = () => {
+    A(() => {
+      (async () => {
+        const c = await B(b);
+        return c
+      })()
+    }, []);
+    return C(`div`, {}, [a()])
+  };
+
+---=== /__moonscript__/1.js ===---
+import { a } from "./index.js";
+
+export const
+  b = () => {
+    return `Hello!`
+  },
+  c = b() + a();
+
+export default c;

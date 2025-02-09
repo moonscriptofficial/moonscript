@@ -1,0 +1,39 @@
+component Main {
+  fun render : Html {
+    <<#MARKDOWN(highlight)
+    Text
+
+    ```moonscript
+    module Time {}
+    ```
+
+    Text
+    MARKDOWN
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  createElement as A,
+  fragment as B
+} from "./runtime.js";
+
+export const C = () => {
+  return A(B, {}, [
+    A('p', {}, [`Text`]),
+    A('pre', {}, [A('code', {
+      class: "language-moonscript"
+    }, [A('span', {
+      class: "line"
+    }, [
+      A('span', {
+        class: "keyword"
+      }, [`module`]),
+      ` `,
+      A('span', {
+        class: "type"
+      }, [`Time`]),
+      ` {}`
+    ])])]),
+    A('p', {}, [`Text`])
+  ])
+};

@@ -1,0 +1,84 @@
+async component First {
+  fun render : Html {
+    <div>
+      "First"
+    </div>
+  }
+}
+
+async component Second {
+  fun render : Html {
+    <div>
+      <First/>
+      "Second"
+    </div>
+  }
+}
+
+component Main {
+  fun render : Html {
+    <div>
+      <First/>
+      <Second/>
+    </div>
+  }
+}
+--------------------------------------------------------------------------------
+---=== /__moonscript__/index.js ===---
+import {
+  lazyComponent as C,
+  createElement as B,
+  lazy as A
+} from "./runtime.js";
+
+export const
+  D = A(`./1.js`),
+  E = A(`./2.js`),
+  F = () => {
+    return B(`div`, {}, [
+      B(C, {
+        c: [],
+        key: `First`,
+        p: {},
+        x: D
+      }),
+      B(C, {
+        c: [],
+        key: `Second`,
+        p: {},
+        x: E
+      })
+    ])
+  };
+
+---=== /__moonscript__/1.js ===---
+import { createElement as A } from "./runtime.js";
+
+export const B = () => {
+  return A(`div`, {}, [`First`])
+};
+
+export default B;
+
+---=== /__moonscript__/2.js ===---
+import {
+  lazyComponent as C,
+  createElement as B,
+  lazy as A
+} from "./runtime.js";
+
+export const
+  D = A(`./1.js`),
+  E = () => {
+    return B(`div`, {}, [
+      B(C, {
+        c: [],
+        key: `First`,
+        p: {},
+        x: D
+      }),
+      `Second`
+    ])
+  };
+
+export default E;

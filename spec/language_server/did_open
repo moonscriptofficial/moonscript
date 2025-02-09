@@ -1,0 +1,19 @@
+component Test {
+  fun render : Html {
+    <div></div>
+  }
+}
+------------------------------------------------------------------file test.moonscript
+{
+  "id": 0,
+  "method": "textDocument/didOpen",
+  "params": {
+    "textDocument": {
+      "uri": "file://#{root_path}/test.moonscript",
+      "languageId": "moonscript",
+      "version": 1,
+      "text": "component Test {\n        fun render : Html {\n\n\n          <div></div>\n        }\n      }"
+    }
+  }
+}
+-------------------------------------------------------------------------request

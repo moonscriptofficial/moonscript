@@ -1,0 +1,11 @@
+type Test {
+  number : Result(Number,Array(String)),
+  param : Error(Bool),
+  string : String
+}
+--------------------------------------------------------------------------------
+type Test {
+  number : Result(Number, Array(String)),
+  param : Error(Bool),
+  string : String
+}

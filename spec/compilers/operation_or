@@ -1,0 +1,29 @@
+type Result(error, value) {
+  Err(error)
+  Ok(value)
+}
+
+type Maybe(value) {
+  Nothing
+  Just(value)
+}
+
+component Main {
+  fun render : String {
+    Maybe.Nothing or "Hello"
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  variant as A,
+  or as B
+} from "./runtime.js";
+
+export const
+  C = A(0, `Maybe.Nothing`),
+  D = A(1, `Maybe.Just`),
+  E = A(1, `Result.Err`),
+  F = A(1, `Result.Ok`),
+  G = () => {
+    return B(C, E, new C(), `Hello`)
+  };

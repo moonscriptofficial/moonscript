@@ -1,0 +1,84 @@
+component Main {
+  fun render : Html {
+    <<#MARKDOWN(highlight)
+    ~~~moonscript
+    <<#MD(highlight)
+    This is a paragraph.
+
+    ```moonscript
+    module MoonScript {
+      // This will be syntax highlighted
+    }
+    ```
+    MD
+    ~~~
+    MARKDOWN
+  }
+}
+--------------------------------------------------------------------------------
+import {
+  createElement as A,
+  fragment as B
+} from "./runtime.js";
+
+export const C = () => {
+  return A(B, {}, [A('pre', {}, [A('code', {
+    class: "language-moonscript"
+  }, [
+    A('span', {
+      class: "line"
+    }, [
+      `<<#MD(`,
+      A('span', {
+        class: "keyword"
+      }, [`highlight`]),
+      `)`,
+      A('span', {
+        class: "string"
+      }, [``])
+    ]),
+    A('span', {
+      class: "line"
+    }, [A('span', {
+      class: "string"
+    }, [`This is a paragraph.`])]),
+    A('span', {
+      class: "line"
+    }, [A('span', {
+      class: "string"
+    }, [``])]),
+    A('span', {
+      class: "line"
+    }, [A('span', {
+      class: "string"
+    }, [`\`\`\`moonscript`])]),
+    A('span', {
+      class: "line"
+    }, [A('span', {
+      class: "string"
+    }, [`module MoonScript {`])]),
+    A('span', {
+      class: "line"
+    }, [A('span', {
+      class: "string"
+    }, [`  // This will be syntax highlighted`])]),
+    A('span', {
+      class: "line"
+    }, [A('span', {
+      class: "string"
+    }, [`}`])]),
+    A('span', {
+      class: "line"
+    }, [A('span', {
+      class: "string"
+    }, [`\`\`\``])]),
+    A('span', {
+      class: "line"
+    }, [
+      A('span', {
+        class: "string"
+      }, [``]),
+      `MD`
+    ])
+  ])])])
+};
