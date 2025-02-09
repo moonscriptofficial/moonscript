@@ -41,7 +41,7 @@ module MoonScript
             MOON
           )
   
-          snippet "The decode:", node
+          snippet "decode:", node
         end unless check_decode(type)
   
         result_type =
