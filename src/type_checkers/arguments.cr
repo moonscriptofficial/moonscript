@@ -1,22 +1,3 @@
-# -----------------------------------------------------------------------
-# This file is part of MoonScript
-#
-# MoonSript is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# MoonSript is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with MoonSript.  If not, see <https://www.gnu.org/licenses/>.
-#
-# Copyright (C) 2025 Krisna Pranav, MoonScript Developers
-# -----------------------------------------------------------------------
-
 module MoonScript
   class TypeChecker
     def check_arguments(arguments : Array(Ast::Argument))
@@ -33,7 +14,7 @@ module MoonScript
           block do
             text "The argument"
             bold %("#{name}")
-            text "is declared."
+            text "is declared after one that had a default value."
           end
 
           block "Arguments that come after ones that have a default value must also have a default value."
@@ -51,7 +32,7 @@ module MoonScript
           end
 
           snippet "It is declared here:", other
-          snippet "duplication is declared here:", argument
+          snippet "It is also declared here:", argument
         end if other
       end
     end

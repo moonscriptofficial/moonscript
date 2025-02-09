@@ -1,22 +1,3 @@
-# -----------------------------------------------------------------------
-# This file is part of MoonScript
-#
-# MoonSript is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# MoonSript is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with MoonSript.  If not, see <https://www.gnu.org/licenses/>.
-#
-# Copyright (C) 2025 Krisna Pranav, MoonScript Developers
-# -----------------------------------------------------------------------
-
 module MoonScript
   class TypeChecker
     def check(node : Ast::Use) : Checkable
@@ -27,13 +8,14 @@ module MoonScript
         ast.providers.find(&.name.value.==(node.provider.value))
 
       error! :use_not_found_provider do
-        snippet "could not find a provider:", node.provider
+        snippet "I could not find a provider:", node.provider
       end unless provider
 
       resolve provider
 
       lookups[node] = {provider, nil}
 
+      # This is checked by the provider so we assume it's there
       subscription =
         records.find!(&.name.==(provider.subscription.value))
 
@@ -41,7 +23,7 @@ module MoonScript
         resolve node.data
 
       error! :use_subscription_mismatch do
-        block "The subsctipion of provider not matches: "
+        block "The subsctipion of a provider does not match its definition."
         expected subscription, record
         snippet "The provider in question is here:", node
       end unless Comparer.compare(record, subscription)
@@ -53,7 +35,7 @@ module MoonScript
           block do
             text "The expression of the"
             bold "where condition"
-            text "must evaluate to a boolean value: "
+            text "must evaluate to a boolean value. Instead it is:"
           end
 
           snippet condition_type

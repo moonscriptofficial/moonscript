@@ -1,22 +1,3 @@
-# -----------------------------------------------------------------------
-# This file is part of MoonScript
-#
-# MoonSript is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# MoonSript is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with MoonSript.  If not, see <https://www.gnu.org/licenses/>.
-#
-# Copyright (C) 2025 Krisna Pranav, MoonScript Developers
-# -----------------------------------------------------------------------
-
 module MoonScript
   class TypeChecker
     def unwind_access(node : Ast::Access, stack = [] of Ast::Variable) : Array(Ast::Variable)
@@ -24,7 +5,7 @@ module MoonScript
       when Ast::Access
         stack.unshift(item.field)
         unwind_access(item, stack)
-      when Ast::Variable
+      when Ast::Variable # Value
         stack.unshift(item)
       end
 
@@ -60,6 +41,10 @@ module MoonScript
       end
     end
 
+    # Maybe.Just -> Type Variant
+    # Maybe.isJust -> Entity function
+    # Html.Event.ADD -> Entity Constant
+    # (() { { a: "B" }}).a -> Record access
     def check(node : Ast::Access) : Checkable
       possibility =
         case variable = node.expression
@@ -76,6 +61,7 @@ module MoonScript
           variable.value
         end
 
+      # Type variant
       if possibility
         entity = scope.resolve(possibility, node).try(&.node)
 
@@ -91,12 +77,13 @@ module MoonScript
             else
               error! :type_variant_missing do
                 snippet "I was looking for a variant of a type:", node.field
-                snippet "The type in question:", parent
+                snippet "The type in question is here:", parent
               end unless entity
             end
           end
         end
 
+        # Constant & entities
         if entity
           if entity && possibility[0].ascii_uppercase?
             if target_node = scope.resolve(node.field.value, entity).try(&.node)
@@ -116,7 +103,7 @@ module MoonScript
       error! :access_not_record do
         snippet "You are trying to access a field on an entity which is not " \
                 "a record:", target
-        snippet "The access in question is: ", node
+        snippet "The access in question is here:", node
       end unless target.is_a?(Record)
 
       new_target = target.fields[node.field.value]?
